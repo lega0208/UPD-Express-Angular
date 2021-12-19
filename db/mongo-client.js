@@ -7,7 +7,7 @@ module.exports.getGreetings = async function() {
 		await client.connect();
 
 		const db = client.db('Test');
-		const greetings = db.collection('TestCollection');
+		const greetings = db.collection('test');
 
 		return greetings.find();
 	} catch (e) {
