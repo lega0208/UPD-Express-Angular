@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>lol</title>
+</head>
+<body>
+	<pre id="lol"></pre>
+<script>
+	document.addEventListener("DOMContentLoaded", (event) => fetch('/api')
+		.then((res) => res.json())
+		.then((data) => document.getElementById('lol').innerText = JSON.stringify(data, null, 2)));
+</script>
+</body>
+</html>
