@@ -10,4 +10,4 @@ COPY . .
 
 EXPOSE 9000
 
-CMD echo "Warming up" && sleep 5 && npm start
+CMD npm start

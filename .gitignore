@@ -12,3 +12,5 @@ vendor/
 .idea
 
 node_modules/
+
+.env

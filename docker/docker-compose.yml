@@ -1,7 +1,7 @@
 version: "3"
 services:
   nginx:
-    image: "node_test-performance_nginx:latest"
+    image: "node_test-performance_nginx"
     build:
       context: ../
       dockerfile: docker/performance_nginx/Dockerfile
@@ -10,13 +10,14 @@ services:
       - "443:443"
     depends_on:
       - web
-    restart: always
+    restart: unless-stopped
     container_name: node_test-performance_nginx
     volumes:
-      - "/home/cra-arc-user/UPD-Express-Angular/public:/var/www/html"
+      - "../public:/var/www/html"
   web:
-    image: "node_test-performance_web:latest"
+    image: "node_test-performance_web"
     container_name: node_test-performance_web
+    restart: unless-stopped
     build:
       context: ../
       dockerfile: docker/performance_web/Dockerfile
@@ -27,19 +28,3 @@ services:
         - HTTPS_PROXY=${HTTP_PROXY}
     ports:
       - "9000"
-    environment:
-      MONGODB_URI: mongodb://mongodb:27017/Test
-    depends_on:
-      - mongodb
-  mongodb:
-    image: lega0208/upd-express-angular:node_test-mongo
-    container_name: node_test-mongo
-    restart: always
-    environment:
-      MONGO_INITDB_DATABASE: Test
-    ports:
-      - "27017:27017"
-    volumes:
-      - mongodb_data_container-test:/data/db
-volumes:
-  mongodb_data_container-test:
